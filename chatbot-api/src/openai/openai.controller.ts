@@ -9,7 +9,7 @@ export class OpenaiController {
   @Post('chatCompletion')
   async chatCompletion(@Body() body: CreateChatCompletionRequest) {
     const completion = this.OpenaiService.createChatCompletion(body.messages);
-
+    console.log("COMPLETION", completion)
     return completion;
   }
 }

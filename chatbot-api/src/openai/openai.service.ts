@@ -12,6 +12,7 @@ export class OpenaiService {
           messages: messages as ChatCompletionMessageParam[],
           model: "gpt-3.5-turbo",
         });
+        console.log("COMPLETION", completion)
         
         return completion;
 }

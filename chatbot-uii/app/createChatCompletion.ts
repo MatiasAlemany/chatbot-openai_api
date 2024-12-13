@@ -13,5 +13,9 @@ export default async function createChatCompletion(messages: ChatCompletionMessa
     }),
   });
 
+  if (!response.ok) {
+    throw new Error('Failed to fetch chat completion');
+  }
+
   return response.json();
 }
