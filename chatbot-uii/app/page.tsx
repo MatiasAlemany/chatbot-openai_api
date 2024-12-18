@@ -24,26 +24,35 @@ export default function Home() {
   };
 
   return (
-    <div className="bg-gray-900 h-screen flex flex-col items-center p-6 text-gray-300">
-      <h1 className="text-5xl font-extrabold text-center text-gray-100 mb-8">
-        How can I help you today?
+    <div className="bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 h-screen flex flex-col items-center p-6 text-gray-300 font-sans">
+      <h1 className="text-5xl font-bold text-center text-gray-100 mb-8 tracking-wide relative">
+        How can I help you today? 🤖
       </h1>
-      <div className="flex-1 w-full max-w-md bg-gray-800 rounded-lg shadow-lg p-6 overflow-y-auto">
+
+      <div className="flex-1 w-full max-w-md bg-gray-800 rounded-lg shadow-xl p-6 overflow-y-auto space-y-4">
         {messages.map((message, index) => (
           <div
             key={index}
-            className={`chat ${message.role === "user" ? "chat-start" : "chat-end"} mb-4`}
+            className={`flex ${
+              message.role === "user" ? "justify-start" : "justify-end"
+            } mb-4`}
           >
-            <div className="chat-bubble p-4 bg-gray-700 text-white rounded-lg">
+            <div
+              className={`p-4 rounded-xl text-sm max-w-xs ${
+                message.role === "user"
+                  ? "bg-blue-500 text-white shadow-lg"
+                  : "bg-gray-700 text-gray-200 shadow-md"
+              }`}
+            >
               {message.content}
             </div>
           </div>
         ))}
       </div>
-      <div className="flex items-center mt-4">
+      <div className="flex items-center mt-4 w-full max-w-md">
         <input
           type="text"
-          placeholder="Message"
+          placeholder="Type your message..."
           value={message}
           onChange={(event) => setMessage(event.target.value)}
           onKeyDown={async (event) => {
@@ -51,11 +60,11 @@ export default function Home() {
               await handleMessage();
             }
           }}
-          className="w-full p-2 border border-gray-600 rounded-lg text-gray-300 bg-gray-700 mr-2"
+          className="w-full p-3 border border-gray-600 rounded-lg text-gray-300 bg-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none mr-2"
         />
         <button
           onClick={handleMessage}
-          className="bg-gray-700 text-gray-100 p-2 rounded-lg hover:bg-gray-600 transition"
+          className="bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-400 transition-all transform hover:scale-105"
         >
           Send
         </button>
